@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller Automotriz ALVA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: #fff;
+        }
+        header {
+            background-color: #222;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        .logo {
+            max-width: 90px;
+            height: auto;
+        }
+        .site-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+        }
+        .social-icons {
+            display: flex;
+            align-items: center;
+        }
+        .social-icons a {
+            color: #fff;
+            font-size: 20px;
+            margin-left: 15px;
+            transition: color 0.3s, transform 0.3s;
+        }
+        .social-icons a:hover {
+            color: #cc0000;
+            transform: scale(1.2);
+        }
+        nav {
+            background-color: #cc0000;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 20px;
+            display: inline-block;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #a80000;
+            transform: scale(1.05);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .carousel {
+    position: relative;
+    margin-bottom: 30px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    height: 600px; /* Ajusta la altura aquí */
+    width: 100%; /* Asegura que el carrusel ocupe todo el ancho disponible */
+}
+
+.carousel-wrapper {
+    display: flex;
+    transition: transform 0.6s ease-in-out;
+    height: 100%;
+}
+
+.carousel-card {
+    min-width: 100%; /* Ajusta el ancho de cada tarjeta para llenar el carrusel */
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #444;
+    border-radius: 15px;
+    margin-right: 10px;
+    color: #fff;
+    transition: transform 0.6s, box-shadow 0.6s;
+    background-size: cover;
+    background-position: center;
+    height: 100%; /* Asegura que cada tarjeta llene el carrusel verticalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.carousel-controls {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    transform: translateY(-50%);
+    padding: 0 15px;
+}
+
+.carousel-controls button {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: none;
+    color: white;
+    padding: 15px; /* Aumenta el tamaño del botón si es necesario */
+    cursor: pointer;
+    font-size: 24px; /* Aumenta el tamaño del ícono si es necesario */
+    border-radius: 50%;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 15px;
+        }
+        .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.6);
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .carousel-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+        .section {
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        .section h2 {
+            color: #cc0000;
+            border-bottom: 3px solid #cc0000;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            position: relative;
+            display: inline-block;
+        }
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: #cc0000;
+            transition: width 0.3s;
+            transform: translateX(-50%);
+        }
+        .section h2:hover::after {
+            width: 100%;
+        }
+        .section p {
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 16px;
+        }
+        .contact-button {
+            background-color: #25D366;
+            color: #fff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.3s;
+            text-decoration: none;
+        }
+        .contact-button:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+        .projects, .team, .services {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .project-card, .team-member, .service-card {
+            background-color: #333;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s, box-shadow 0.5s;
+            max-width: 300px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards;
+        }
+        .project-card:nth-child(even), .team-member:nth-child(even), .service-card:nth-child(even) {
+            animation-delay: 0.4s;
+        }
+        .project-card img, .team-member img {
+            max-width: 100%;
+            border-radius: 15px;
+            height: auto;
+            transition: transform 0.5s;
+        }
+        .project-card:hover img, .team-member:hover img {
+            transform: scale(1.1);
+        }
+        .service-card {
+            text-align: center;
+            padding: 20px;
+        }
+        .team-member img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            margin: 0 auto;
+        }
+        .project-card h3, .team-member h3, .service-card h3 {
+            margin: 10px 0;
+            color: #cc0000;
+        }
+        .project-card p, .team-member p, .service-card p {
+            margin: 0;
+            font-size: 14px;
+        }
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+        footer a {
+            color: #cc0000;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #444;
+            border-radius: 10px;
+        }
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #555;
+            border-radius: 5px;
+            background-color: #333;
+            color: #fff;
+        }
+        form button {
+            background-color: #cc0000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        form button:hover {
+            background-color: #a80000;
+            transform: scale(1.05);
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="img/logo.jpg" alt="Logo de ALVA" class="logo">
+                <h1 class="site-title">Servicio de mantenimiento automotriz ALVA</h1>
+            </div>
+            <div class="social-icons">
+                <a href="#https://www.facebook.com/Alva.automotriz?mibextid=ZbWKwL" class="fab fa-facebook-f" aria-label="Facebook"></a>
+                <a href="#https://www.instagram.com/alva.automotriz?igsh=MW9jcXg3eHk3dDc2cA==" class="fab fa-instagram" aria-label="Instagram"></a>
+                <a href="#https://www.tiktok.com/@alva.automotriz?_t=8ooaCS8UiPt&_r=1" class="fab fa-tiktok" aria-label="tiktok"></a>
+            </div>
+        </div>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#projects">Proyectos</a></li>
+            <li><a href="#team">Equipo</a></li>
+            <li><a href="#services">Servicios</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </nav>
+    <main>
+        <div class="carousel">
+            <div class="carousel-wrapper">
+                <div class="carousel-card" style="background-image: url('img/parte\ 10.jpg');">
+                    <!--<h3>Proyecto 1</h3>
+                    <p>Descripción.</p>-->
+                </div>
+                <div class="carousel-card" style="background-image: url('img/parte\ 11.jpg');">
+                    <!--<h3>Proyecto 2</h3>
+                    <p>Descripción breve del proyecto 2.</p>-->
+                </div>
+                <div class="carousel-card" style="background-image: url('img/parte\ 7.jpg');">
+                   <!-- <h3>Proyecto 2</h3>
+                    <p>Descripción breve del proyecto 2.</p>-->
+                </div>
+                <div class="carousel-card" style="background-image: url('img/parte\ 9.jpg');">
+                    <!--<h3>Proyecto 2</h3>
+                    <p>Descripción breve del proyecto 2.</p>-->
+                </div>
+                <div class="carousel-card" style="background-image: url('img/parte\ 5.jpg');">
+                     <!-- <h3>Proyecto 2</h3>
+                    <p>Descripción breve del proyecto 2.</p>-->
+                </div>
+                <div class="carousel-card" style="background-image: url('img/parte\ 6.jpg');">
+                    <!-- <h3>Proyecto 2</h3>
+                    <p>Descripción breve del proyecto 2.</p>-->
+                </div>
+                <div class="carousel-card" style="background-image: url('img/parte\ 13.jpg');">
+                    <!-- <h3>Proyecto 2</h3>
+                    <p>Descripción breve del proyecto 2.</p>-->
+                </div>
+                <div class="carousel-card" style="background-image: url('img/parte\ 4.jpg');">
+                     <!--<h3>Proyecto 2</h3>
+                    <p>Descripción breve del proyecto 2.</p>-->
+                </div>   <div class="carousel-card" style="background-image: url('img/motor\ audi.jpg');">
+                    <!--<h3>Proyecto 2</h3>
+                   <p>Descripción breve del proyecto 2.</p>-->
+               </div>
+             
+              
+                <!-- Más tarjetas -->
+            </div>
+            <div class="carousel-controls">
+                <button id="prev">&lt;</button>
+                <button id="next">&gt;</button>
+            </div>
+        </div>
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2>Bienvenido a Taller Automotriz ALVA</h2>
+            <p>¡Bienvenidos a ALVA Taller Automotriz!
+
+               <p> En ALVA, nuestra pasión por los vehículos se refleja en cada detalle de nuestro trabajo. Con un equipo de técnicos altamente capacitados y tecnología de vanguardia, ofrecemos servicios de reparación y mantenimiento de la más alta calidad para mantener tu automóvil en óptimas condiciones. Desde cambios de aceite hasta reparaciones complejas, en ALVA nos comprometemos a brindarte confianza y tranquilidad en cada visita. Tu vehículo está en buenas manos con nosotros. ¡Gracias por elegir ALVA, tu taller de confianza!</p> 
+            </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2>Proyectos Recientes</h2>
+            <div class="projects">
+                <div class="project-card">
+                    <img src="img/kia blanco .jpg" alt="Proyecto 1">
+                    <h3>Camioneta KIA</h3>
+                    <p>Cambio de balatas delanteras con rectificado de discos.</p>
+                </div>
+                <div class="project-card">
+                    <img src="img/camioneta roja.jpg" alt="Proyecto 2">
+                    <h3>Camioeta roja</h3>
+                    <p>Cmbio de amoriguadores delanteros y traceros.</p>
+                </div>
+                <div class="project-card">
+                    <img src="img/carro cafe logo.jpg" alt="Proyecto 3">
+                    <h3>Carro cafe</h3>
+                    <p>Se realizo un cambio de bomba de agua.</p>
+                </div>
+                    <div class="project-card">
+                        <img src="img/montacargas amarillo.jpg" alt="Proyecto 4">
+                        <h3>Montacargas</h3>
+                        <p>Servicio de mantenimiento de montacargas.</p>
+                    </div>
+                        <div class="project-card">
+                            <img src="img/BMW blanco .jpg" alt="Proyecto 5">
+                            <h3>BMW</h3>
+                            <p>Servicio de mantenimiento mayor.</p>
+                        </div>
+                        <div class="project-card">
+                            <img src="img/carro deportivo 2.jpg" alt="Proyecto 6">
+                            <h3>Mustang</h3>
+                            <p>Servicio de reparacion de caja estandar.</p>
+                        </div>
+                        <div class="project-card">
+                            <img src="img/contour cafe.jpg" alt="Proyecto 6">
+                            <h3>Camioneta KIA</h3>
+                            <p>Cambio de bomba de combustible.</p>
+                        </div>
+                        <div class="project-card">
+                            <img src="img/Audi A 4.jpg" alt="Proyecto 6">
+                            <h3>Camioneta KIA</h3>
+                            <p>Servicio de afinacion preventivo.</p>
+                        </div>
+                        <div class="project-card">
+                            <img src="img/camioneta seguridad privada.jpg" alt="Proyecto 6">
+                            <h3>Camioneta KIA</h3>
+                            <p>Hojalateria y pintura en general</p>
+                        </div>
+            </div>
+        </section>
+
+        <!-- Service Section -->
+        <section id="team" class="section">
+            <h2>Conoce Nuestros servicios</h2>
+            <div class="team">
+                <div class="team-member">
+                    <img src="img/motor audi.jpg" alt="Miembro del equipo 1">
+                    <h3>Diagnostico de scaner</h3>
+                    <p>  El escáner automotriz se conecta al vehículo para leer códigos de error, visualizar datos en tiempo real y borrar códigos tras reparaciones. Facilita la detección precisa de problemas en el sistema del vehículo.</p>
+                </div>
+                <div class="team-member">
+                    <img src="img/parte 12.jpg" alt="Miembro del equipo 2">
+                    <h3>Cambios de aceite</h3>
+                    <p>Es el proceso de reemplazar el aceite usado del motor por aceite nuevo, junto con el cambio del filtro de aceite , este servicio es crucial para mantener el motor funcionando de manera eficiente y prolongar su vida útil, ya que el aceite nuevo lubrica las piezas móviles, reduce el desgaste y ayuda a mantener el motor limpio. </p>
+                </div>
+                <div class="team-member">
+                    <img src="img/parte 1.jpg" alt="Miembro del equipo 2">
+                    <h3>Afinaciones</h3>
+                    <p>Implican ajustar y reemplazar componentes clave del motor, como bujías y filtros, para mejorar su rendimiento y eficiencia. Este servicio asegura una mezcla adecuada de aire y combustible, una sincronización correcta del encendido y un funcionamiento óptimo del motor. </p>
+                </div>
+                <div class="team-member">
+                    <img src="img/Parte 2.jpg" alt="Miembro del equipo 2">
+                    <h3>Reparacion de frenos </h3>
+                    <p> consiste en revisar, reparar o reemplazar los componentes del sistema de frenos, como pastillas, discos, tambores y líquidos. Este servicio es crucial para garantizar un frenado seguro y eficaz. La reparación de frenos asegura que el vehículo responda correctamente al frenado, mejora la seguridad del conductor y de los pasajeros, y previene problemas más graves y costosos en el sistema de frenos.</p>
+                </div>
+                <div class="team-member">
+                    <img src="img/reparacion de montacargas .jpg" alt="Miembro del equipo 2">
+                    <h3>Ajuste de motores </h3>
+                    <p>Implica calibrar y optimizar varios parámetros del motor para mejorar su rendimiento y eficiencia. Este servicio puede incluir la regulación de la mezcla aire-combustible, la sincronización del encendido y el ajuste de válvulas.</p>
+                </div>
+                <div class="team-member">
+                    <img src="img/cables 1.jpg" alt="Miembro del equipo 2">
+                    <h3>Reparación de suspensión y dirección</h3>
+                    <p>Se enfoca en restaurar el sistema que conecta las ruedas con el chasis del vehículo. Este servicio incluye la revisión y reparación de componentes clave como amortiguadores, resortes, brazos de control, y la alineación de las ruedas. La reparación asegura una conducción más suave, mejora la estabilidad del vehículo y previene el desgaste irregular de los neumáticos, garantizando así un manejo seguro y cómodo.</p>
+                </div>
+                <div class="team-member">
+                    <img src="img/cables 2.jpg" alt="Miembro del equipo 2">
+                    <h3> Reparación del sistema eléctrico</h3>
+                    <p>Abarca la identificación y corrección de fallos en el sistema eléctrico del vehículo, que incluye componentes como la batería, alternador, arranque, y circuitos eléctricos. Este servicio implica diagnosticar problemas eléctricos, reparar o reemplazar cables, conectores y dispositivos eléctricos, y asegurar que todos los sistemas eléctricos, como luces, ventanas eléctricas y sistemas de control, funcionen correctamente</p>
+                </div>
+                <div class="team-member">
+                    <img src="img/Limpieza de motor.jpg" alt="Miembro del equipo 2">
+                    <h3>Transmisiones automaticas  </h3>
+                    <p> incluye el diagnóstico y reparación de problemas en el sistema de transmisión del vehículo. Para transmisiones automáticas, se revisan componentes como el convertidor de par y el sistema de control electrónico, mientras que en las transmisiones estándar se ajustan elementos como el embrague y los sincronizadores , estos servicios aseguran cambios de marcha suaves y un rendimiento óptimo, previniendo problemas mayores y costosos.</p>
+                </div>
+                <div class="team-member">
+                    <img src="img/parte 8.jpg" alt="Miembro del equipo 2">
+                    <h3>Transmisiones estandar </h3>
+                    <p>cluye el cambio de aceite para asegurar la lubricación adecuada, la inspección y ajuste del embrague, la revisión de los cables de la palanca de cambios y la verificación de posibles fugas. Además, se realiza una prueba de conducción para garantizar el correcto funcionamiento de la transmisión y del embrague, lo que ayuda a prevenir fallas mayores y a prolongar la vida útil del sistema.</p>
+                </div>
+                <div class="team-member">
+                    <img src="img/montacargas en camion .jpg" alt="Miembro del equipo 2">
+                    <h3>Reparacion de diferenciales </h3>
+                    <p>Implica revisar y solucionar problemas en el mecanismo que permite que las ruedas del vehículo giren a diferentes velocidades, especialmente en curvas. Este servicio incluye la inspección y reparación de componentes como engranajes, rodamientos y sellos. La reparación asegura una distribución adecuada de la potencia entre las ruedas, previene el desgaste irregular de los neumáticos y mejora la estabilidad y el manejo del vehículo.</p>
+                </div>
+                 <div class="team-member">
+                    <img src="img/reparacion de montacargas .jpg" alt="Miembro del equipo 2">
+                    <h3>Mantenimiento preventivo de montacargas  </h3>
+                    <p>Consiste en realizar inspecciones y ajustes regulares para prevenir fallos y mantener el equipo en óptimas condiciones asi mismo incluye tareas programadas como cambios de aceite, limpieza, lubricación y revisión de componentes clave, este enfoque ayuda a evitar problemas costosos y asegura un funcionamiento fiable y eficiente del equipo.</p>
+                </div>
+                <div class="team-member">
+                    <img src="img/montacargas amarillo.jpg" alt="Miembro del equipo 2">
+                    <h3>Mantenimiento correctivo de montacargas</h3>
+                    <p>Se enfoca en reparar fallos o problemas imprevistos que afectan el funcionamiento del equipo , esto incluye identificar y solucionar fallos en componentes como el motor, frenos, sistemas hidráulicos y eléctricos. El objetivo es restaurar el montacargas a su estado operativo para asegurar su funcionamiento seguro y eficiente.</p>
+                </div>
+               
+            </div>
+        </section>
+
+        <!-- Services Section 
+        <section id="services" class="section">
+            <h2>Servicios</h2>
+            <div class="services">
+                <div class="service-card">
+                    <h3>Reparación de Transmisiones</h3>
+                    <p>Servicio completo para reparar y mantener transmisiones automáticas y manuales.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Diagnóstico de Motores</h3>
+                    <p>Identificación y resolución de problemas en el motor para mantener tu vehículo funcionando de manera óptima.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Servicio de Frenos</h3>
+                    <p>Inspección y reemplazo de frenos para asegurar un frenado efectivo y seguro.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Reparación de Suspensión</h3>
+                    <p>Reparación y ajuste del sistema de suspensión para mejorar la estabilidad y el manejo de tu vehículo.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Mantenimiento General</h3>
+                    <p>Servicios de mantenimiento general para mantener tu vehículo en perfectas condiciones.</p>
+                </div>
+            </div>
+        </section>-->
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Contacto</h2>
+            <form id="contact-form">
+                <label for="name">Nombre:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="model">Modelo del auto:</label>
+                <input type="text" id="model" model="model" required>
+                <label for="marca">Marca del auto:</label>
+                <input type="text" id="marca" marca="marca" required>
+                <label for="email">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Falla del auto:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit" class="contact-button">Enviar Mensaje</button>
+            </form>
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Taller Automotriz ALVA. Todos los derechos reservados. <a href="mailto:contacto@talleralva.com">Contáctanos</a></p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // JavaScript for Carousel
+            const carouselWrapper = document.querySelector('.carousel-wrapper');
+            const prevButton = document.getElementById('prev');
+            const nextButton = document.getElementById('next');
+            let index = 0;
+
+            function updateCarousel() {
+                const cardWidth = document.querySelector('.carousel-card').offsetWidth;
+                carouselWrapper.style.transform = `translateX(${-index * cardWidth}px)`;
+            }
+
+            prevButton.addEventListener('click', function() {
+                index = (index > 0) ? index - 1 : carouselWrapper.children.length - 1;
+                updateCarousel();
+            });
+
+            nextButton.addEventListener('click', function() {
+                index = (index < carouselWrapper.children.length - 1) ? index + 1 : 0;
+                updateCarousel();
+            });
+
+            // Optional: Auto-slide
+            setInterval(function() {
+                nextButton.click();
+            }, 5000); // 5 seconds
+
+            // JavaScript for WhatsApp form submission
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the default form submission
+                
+                const name = encodeURIComponent(document.getElementById('name').value);
+                const model = encodeURIComponent(document.getElementById('model').value);
+                const marca = encodeURIComponent(document.getElementById('marca').value);
+                const email = encodeURIComponent(document.getElementById('email').value);
+                const message = encodeURIComponent(document.getElementById('message').value);
+
+                const whatsappMessage = `Nombre: ${name}%0AModelo: ${model}%0AMarca: ${marca}%0ACorreo Electrónico: ${email}%0AMensaje: ${message}`;
+                const whatsappURL = `https://api.whatsapp.com/send?phone=+7291840636&text=${whatsappMessage}`; // Reemplaza +1234567890 con tu número de WhatsApp
+
+                window.open(whatsappURL, '_blank'); // Abre la conversación en WhatsApp
+            });
+        });
+    </script>
+</body>
+</html>
